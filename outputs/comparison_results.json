@@ -1,0 +1,242 @@
+[
+  {
+    "scene": "dark forest at night with distant wolves",
+    "style": "baseline",
+    "music": {
+      "scene": "dark forest at night with distant wolves",
+      "prompt_used": "dark forest at night with distant wolves",
+      "prompt_style": "baseline",
+      "model": "musicgen",
+      "output_path": "outputs\\s00_baseline_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.88,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "dark forest at night with distant wolves",
+      "prompt_used": "dark forest at night with distant wolves",
+      "prompt_style": "baseline",
+      "model": "audioldm2",
+      "output_path": "outputs\\s00_baseline_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.87,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "dark forest at night with distant wolves",
+    "style": "engineered",
+    "music": {
+      "scene": "dark forest at night with distant wolves",
+      "prompt_used": "dark forest at night with distant wolves, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music",
+      "prompt_style": "engineered",
+      "model": "musicgen",
+      "output_path": "outputs\\s00_engineered_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.32,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "dark forest at night with distant wolves",
+      "prompt_used": "dark forest at night with distant wolves, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality",
+      "prompt_style": "engineered",
+      "model": "audioldm2",
+      "output_path": "outputs\\s00_engineered_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.62,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "bustling medieval marketplace",
+    "style": "baseline",
+    "music": {
+      "scene": "bustling medieval marketplace",
+      "prompt_used": "bustling medieval marketplace",
+      "prompt_style": "baseline",
+      "model": "musicgen",
+      "output_path": "outputs\\s01_baseline_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.41,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "bustling medieval marketplace",
+      "prompt_used": "bustling medieval marketplace",
+      "prompt_style": "baseline",
+      "model": "audioldm2",
+      "output_path": "outputs\\s01_baseline_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.64,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "bustling medieval marketplace",
+    "style": "engineered",
+    "music": {
+      "scene": "bustling medieval marketplace",
+      "prompt_used": "bustling medieval marketplace, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music",
+      "prompt_style": "engineered",
+      "model": "musicgen",
+      "output_path": "outputs\\s01_engineered_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.4,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "bustling medieval marketplace",
+      "prompt_used": "bustling medieval marketplace, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality",
+      "prompt_style": "engineered",
+      "model": "audioldm2",
+      "output_path": "outputs\\s01_engineered_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.67,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "spaceship engine room, humming machinery",
+    "style": "baseline",
+    "music": {
+      "scene": "spaceship engine room, humming machinery",
+      "prompt_used": "spaceship engine room, humming machinery",
+      "prompt_style": "baseline",
+      "model": "musicgen",
+      "output_path": "outputs\\s02_baseline_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.38,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "spaceship engine room, humming machinery",
+      "prompt_used": "spaceship engine room, humming machinery",
+      "prompt_style": "baseline",
+      "model": "audioldm2",
+      "output_path": "outputs\\s02_baseline_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.64,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "spaceship engine room, humming machinery",
+    "style": "engineered",
+    "music": {
+      "scene": "spaceship engine room, humming machinery",
+      "prompt_used": "spaceship engine room, humming machinery, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music",
+      "prompt_style": "engineered",
+      "model": "musicgen",
+      "output_path": "outputs\\s02_engineered_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.36,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "spaceship engine room, humming machinery",
+      "prompt_used": "spaceship engine room, humming machinery, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality",
+      "prompt_style": "engineered",
+      "model": "audioldm2",
+      "output_path": "outputs\\s02_engineered_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.63,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "epic boss battle in a volcanic arena",
+    "style": "baseline",
+    "music": {
+      "scene": "epic boss battle in a volcanic arena",
+      "prompt_used": "epic boss battle in a volcanic arena",
+      "prompt_style": "baseline",
+      "model": "musicgen",
+      "output_path": "outputs\\s03_baseline_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.43,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "epic boss battle in a volcanic arena",
+      "prompt_used": "epic boss battle in a volcanic arena",
+      "prompt_style": "baseline",
+      "model": "audioldm2",
+      "output_path": "outputs\\s03_baseline_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.63,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "epic boss battle in a volcanic arena",
+    "style": "engineered",
+    "music": {
+      "scene": "epic boss battle in a volcanic arena",
+      "prompt_used": "epic boss battle in a volcanic arena, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music",
+      "prompt_style": "engineered",
+      "model": "musicgen",
+      "output_path": "outputs\\s03_engineered_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.42,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "epic boss battle in a volcanic arena",
+      "prompt_used": "epic boss battle in a volcanic arena, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality",
+      "prompt_style": "engineered",
+      "model": "audioldm2",
+      "output_path": "outputs\\s03_engineered_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.62,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "peaceful village by a flowing river",
+    "style": "baseline",
+    "music": {
+      "scene": "peaceful village by a flowing river",
+      "prompt_used": "peaceful village by a flowing river",
+      "prompt_style": "baseline",
+      "model": "musicgen",
+      "output_path": "outputs\\s04_baseline_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.19,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "peaceful village by a flowing river",
+      "prompt_used": "peaceful village by a flowing river",
+      "prompt_style": "baseline",
+      "model": "audioldm2",
+      "output_path": "outputs\\s04_baseline_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.65,
+      "sample_rate": 16000
+    }
+  },
+  {
+    "scene": "peaceful village by a flowing river",
+    "style": "engineered",
+    "music": {
+      "scene": "peaceful village by a flowing river",
+      "prompt_used": "peaceful village by a flowing river, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music",
+      "prompt_style": "engineered",
+      "model": "musicgen",
+      "output_path": "outputs\\s04_engineered_music.wav",
+      "duration_sec": 7.94,
+      "latency_sec": 5.14,
+      "sample_rate": 32000
+    },
+    "sfx": {
+      "scene": "peaceful village by a flowing river",
+      "prompt_used": "peaceful village by a flowing river, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality",
+      "prompt_style": "engineered",
+      "model": "audioldm2",
+      "output_path": "outputs\\s04_engineered_sfx.wav",
+      "duration_sec": 4.0,
+      "latency_sec": 5.7,
+      "sample_rate": 16000
+    }
+  }
+]

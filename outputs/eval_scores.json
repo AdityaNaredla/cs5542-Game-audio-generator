@@ -1,0 +1,198 @@
+{
+  "per_sample": [
+    {
+      "scene": "dark forest at night with distant wolves",
+      "style": "baseline",
+      "music": {
+        "rms": 0.0785,
+        "crest": 12.74,
+        "flatness": 0.115,
+        "prompt_alignment": 0.075,
+        "latency_sec": 5.88
+      },
+      "sfx": {
+        "rms": 0.2556,
+        "crest": 3.91,
+        "flatness": 0.121,
+        "prompt_alignment": -0.045,
+        "latency_sec": 5.87
+      }
+    },
+    {
+      "scene": "dark forest at night with distant wolves",
+      "style": "engineered",
+      "music": {
+        "rms": 0.2844,
+        "crest": 3.52,
+        "flatness": 0.142,
+        "prompt_alignment": 0.072,
+        "latency_sec": 5.32
+      },
+      "sfx": {
+        "rms": 0.1989,
+        "crest": 5.03,
+        "flatness": 0.327,
+        "prompt_alignment": -0.145,
+        "latency_sec": 5.62
+      }
+    },
+    {
+      "scene": "bustling medieval marketplace",
+      "style": "baseline",
+      "music": {
+        "rms": 0.1445,
+        "crest": 6.92,
+        "flatness": 0.324,
+        "prompt_alignment": 0.075,
+        "latency_sec": 5.41
+      },
+      "sfx": {
+        "rms": 0.199,
+        "crest": 5.03,
+        "flatness": 0.581,
+        "prompt_alignment": 0.136,
+        "latency_sec": 5.64
+      }
+    },
+    {
+      "scene": "bustling medieval marketplace",
+      "style": "engineered",
+      "music": {
+        "rms": 0.223,
+        "crest": 4.49,
+        "flatness": 0.361,
+        "prompt_alignment": 0.435,
+        "latency_sec": 5.4
+      },
+      "sfx": {
+        "rms": 0.2344,
+        "crest": 4.27,
+        "flatness": 0.231,
+        "prompt_alignment": 0.184,
+        "latency_sec": 5.67
+      }
+    },
+    {
+      "scene": "spaceship engine room, humming machinery",
+      "style": "baseline",
+      "music": {
+        "rms": 0.3708,
+        "crest": 2.7,
+        "flatness": 0.194,
+        "prompt_alignment": 0.303,
+        "latency_sec": 5.38
+      },
+      "sfx": {
+        "rms": 0.3,
+        "crest": 3.33,
+        "flatness": 0.274,
+        "prompt_alignment": 0.213,
+        "latency_sec": 5.64
+      }
+    },
+    {
+      "scene": "spaceship engine room, humming machinery",
+      "style": "engineered",
+      "music": {
+        "rms": 0.2036,
+        "crest": 4.91,
+        "flatness": 0.171,
+        "prompt_alignment": 0.259,
+        "latency_sec": 5.36
+      },
+      "sfx": {
+        "rms": 0.903,
+        "crest": 1.11,
+        "flatness": 0.195,
+        "prompt_alignment": 0.325,
+        "latency_sec": 5.63
+      }
+    },
+    {
+      "scene": "epic boss battle in a volcanic arena",
+      "style": "baseline",
+      "music": {
+        "rms": 0.2203,
+        "crest": 4.54,
+        "flatness": 0.211,
+        "prompt_alignment": 0.355,
+        "latency_sec": 5.43
+      },
+      "sfx": {
+        "rms": 0.2095,
+        "crest": 4.77,
+        "flatness": 0.313,
+        "prompt_alignment": 0.061,
+        "latency_sec": 5.63
+      }
+    },
+    {
+      "scene": "epic boss battle in a volcanic arena",
+      "style": "engineered",
+      "music": {
+        "rms": 0.1893,
+        "crest": 5.28,
+        "flatness": 0.266,
+        "prompt_alignment": 0.443,
+        "latency_sec": 5.42
+      },
+      "sfx": {
+        "rms": 0.2615,
+        "crest": 3.82,
+        "flatness": 0.345,
+        "prompt_alignment": 0.033,
+        "latency_sec": 5.62
+      }
+    },
+    {
+      "scene": "peaceful village by a flowing river",
+      "style": "baseline",
+      "music": {
+        "rms": 0.1445,
+        "crest": 6.92,
+        "flatness": 0.116,
+        "prompt_alignment": 0.188,
+        "latency_sec": 5.19
+      },
+      "sfx": {
+        "rms": 0.2698,
+        "crest": 3.71,
+        "flatness": 0.182,
+        "prompt_alignment": -0.002,
+        "latency_sec": 5.65
+      }
+    },
+    {
+      "scene": "peaceful village by a flowing river",
+      "style": "engineered",
+      "music": {
+        "rms": 0.1615,
+        "crest": 6.19,
+        "flatness": 0.098,
+        "prompt_alignment": 0.121,
+        "latency_sec": 5.14
+      },
+      "sfx": {
+        "rms": 0.229,
+        "crest": 4.37,
+        "flatness": 0.362,
+        "prompt_alignment": 0.12,
+        "latency_sec": 5.7
+      }
+    }
+  ],
+  "summary": {
+    "music": {
+      "baseline_alignment": 0.199,
+      "engineered_alignment": 0.266,
+      "baseline_latency": 5.458,
+      "engineered_latency": 5.328
+    },
+    "sfx": {
+      "baseline_alignment": 0.073,
+      "engineered_alignment": 0.103,
+      "baseline_latency": 5.686,
+      "engineered_latency": 5.648
+    }
+  }
+}
