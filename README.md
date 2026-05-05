@@ -1,33 +1,37 @@
-# 🎮 Game Audio Generator — MusicGen + AudioLDM2
+# 🎮 Game Scene Generator — MusicGen + AudioLDM2 + Stable Diffusion
 
 > **CS 5542 · Quiz Challenge 2 · Foundation Models for Speech, Music, and Sound AI**
 
-A multimodal AI pipeline that turns a single scene description into a complete **game audio pack**: atmospheric background music *and* matching sound effects — using two pretrained foundation models working together.
+A multimodal AI pipeline that turns a single scene description into a complete **game scene pack**: atmospheric background music, matching sound effects, *and* concept art — all driven by the same prompt, using three pretrained foundation models working together.
 
 ```text
-  "dark forest at night, distant wolves"
-              │
-      ┌───────┴────────┐
-      ▼                ▼
-  MusicGen-small   AudioLDM2
-  (background      (sound
-   music)           effects)
-      │                │
-      └───────┬────────┘
-              ▼
-      🎵  Scene Audio Pack  🔊
+        "haunted mansion library, ticking clock"
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+  MusicGen-small   AudioLDM2    Stable Diffusion
+   (background      (sound         (concept
+    music)           effects)        art)
+        │              │              │
+        └──────────────┼──────────────┘
+                       ▼
+              🎵  +  🔊  +  🎨
+                Scene Pack
 ```
 
 ## Why this is interesting
 
-Indie game devs and hobbyist creators spend enormous time and money sourcing royalty-free music *and* sound effects that actually match each other. This pipeline generates **both from the same scene prompt**, ensuring they share a vibe — without licensing, without searching freesound.org for hours.
+Indie game devs spend hours sourcing music, sound effects, and reference art that all match each other. This pipeline generates **all three from the same scene prompt**, so they share a vibe by construction — no licensing, no manual matching.
+
+The image generator was added partway through the project after I realized I'd already used Stable Diffusion in Quiz 1 for an interior design image series. The same model and prompting techniques transferred directly — turning the audio generator into a true scene-to-multimedia system.
 
 ## Models used
 
-| Purpose | Model | Source |
+| Purpose | Model | HuggingFace ID |
 |---|---|---|
 | Background music | **MusicGen-small** | `facebook/musicgen-small` |
 | Sound effects | **AudioLDM2** | `cvssp/audioldm2` |
+| Concept art | **Stable Diffusion 1.5** | `runwayml/stable-diffusion-v1-5` |
 | (Eval) Prompt alignment | **LAION-CLAP** | `laion/clap-htsat-unfused` |
 
 ## Quick start
@@ -36,66 +40,100 @@ Indie game devs and hobbyist creators spend enormous time and money sourcing roy
 # 1. Install
 pip install -r requirements.txt
 
-# 2. Generate one scene
+# 2. Generate one scene (audio only)
 python game_audio_generator.py --scene "haunted mansion library, ticking clock"
 
-# 3. Batch generate from a file
-python game_audio_generator.py --batch scenes.txt
+# 3. Generate full multimodal pack (audio + image)
+python game_audio_generator.py --scene "haunted mansion library, ticking clock" --with-image
 
-# 4. Run the baseline vs engineered-prompt comparison
+# 4. Batch from a file
+python game_audio_generator.py --batch scenes.txt --with-image
+
+# 5. Baseline vs engineered prompt comparison
 python game_audio_generator.py --compare
 python evaluate.py
 ```
 
-GPU is strongly recommended (T4 or better). CPU works but each scene takes 2–5 minutes.
+GPU strongly recommended. On a typical RTX-class card, expect ~5 sec per audio clip and ~3–5 sec per image. CPU works but each scene takes 2–5 minutes.
 
 ## Prompt engineering
 
-The core experiment compares **baseline** prompts (just the scene) against **engineered** prompts with domain-specific modifiers:
+The core experiment compares **baseline** prompts (raw scene) against **engineered** prompts with domain-specific modifiers and negative prompts:
 
-| Kind | Baseline | Engineered |
+| Modality | Baseline | Engineered |
 |---|---|---|
-| Music | `{scene}` | `{scene}, orchestral video game soundtrack, cinematic, atmospheric, high quality, 120 bpm, loopable background music` |
-| SFX | `{scene}` | `{scene}, high-fidelity game sound effect, clear, no music, no speech, foley recording, studio quality` |
+| Music | `{scene}` | `{scene}, orchestral video game soundtrack, cinematic, atmospheric, 120 bpm, loopable` |
+| SFX | `{scene}` | `{scene}, high-fidelity game sound effect, foley recording, studio quality` |
+| Image | `{scene}` | `{scene}, video game concept art, cinematic lighting, ArtStation trending, 4k` |
 
-AudioLDM2 also benefits from a **negative prompt** (`"low quality, music, speech, noise"`) to suppress spoken content and musical artifacts in SFX outputs.
+AudioLDM2 also receives a **negative prompt** (`"low quality, music, speech, noise"`) to suppress vocal/musical bleed in SFX. Stable Diffusion gets one too (`"low quality, blurry, watermark, text, ..."`) to suppress common artifacts.
+
+## Results
+
+Real CLAP scores from `outputs/eval_scores.json`, averaged across 5 evaluation scenes:
+
+| Metric | Baseline | Engineered | Delta |
+|---|---|---|---|
+| Music alignment (CLAP × 100) | 19.9 | 26.6 | **+34%** |
+| SFX alignment (CLAP × 100) | 7.3 | 10.3 | **+41%** |
+| Music latency | 5.46 s | 5.33 s | ~0 |
+| SFX latency | 5.69 s | 5.65 s | ~0 |
+
+Engineered prompts won on every measurable axis with no latency cost. The biggest single contributor was the **negative prompt on AudioLDM2**.
+
+Honest failure case: the "dark forest, distant wolves" scene actually scored *lower* on CLAP after prompt engineering on SFX (−0.15 vs −0.05). CLAP is treated as a proxy here, not ground truth — it correlates with human preference but isn't a substitute for it.
 
 ## Evaluation
 
-`evaluate.py` scores each generated clip on three axes:
+`evaluate.py` scores each generated audio clip on:
 
-1. **Prompt alignment** — cosine similarity between the CLAP text and audio embeddings. Higher = output matches the prompt better.
+1. **Prompt alignment** — text↔audio cosine similarity from `transformers.ClapModel` (no `laion-clap` install needed).
 2. **Realism heuristics** — crest factor and spectral flatness, which flag obviously distorted or overly flat outputs.
 3. **Latency** — wall-clock seconds per generation.
 
-Results are written to `outputs/eval_scores.json`. A summary table appears on the "Results" slide of the accompanying deck.
+Results are written to `outputs/eval_scores.json`.
 
 ## Repository layout
 
 ```
 .
-├── game_audio_generator.py   # main pipeline (CLI)
-├── evaluate.py               # CLAP + heuristic scoring
-├── scenes.txt                # eval scenes
+├── game_audio_generator.py   # main pipeline: MusicGen + AudioLDM2 + SD
+├── evaluate.py               # CLAP-based scoring (via transformers.ClapModel)
+├── scenes.txt                # 8 evaluation scenes
 ├── requirements.txt
-├── outputs/                  # generated .wav files + JSON results
+├── outputs/                  # generated .wav, .png, and .json results
 └── README.md
 ```
+
+## Implementation notes
+
+A few non-obvious things worth flagging if you're reading or extending the code:
+
+**AudioLDM2 + new transformers compatibility patch.** Recent `transformers` versions load AudioLDM2's `language_model` as `GPT2Model` (no generation head), but the `diffusers` pipeline calls `.generate()` on it — which throws `AttributeError: 'GPT2Model' has no attribute '_update_model_kwargs_for_generation'`. The fix is to load `GPT2LMHeadModel` explicitly and swap it in after `AudioLDM2Pipeline.from_pretrained()`. See `load_audioldm2()` in `game_audio_generator.py`. (Reference: [diffusers PR #11244](https://github.com/huggingface/diffusers/pull/11244).)
+
+**Lazy model loading.** Each model is loaded on first use. If you only generate audio, SD never loads — saves ~4 GB VRAM.
+
+**Memory savings.** SD uses fp16 + attention slicing on GPU. MusicGen and AudioLDM2 stay in their default precision because they're smaller.
+
+**Reproducibility.** SD uses seed `42` by default for reproducibility. Same scene + style → same image. Override via the `seed` parameter on `generate_image()`.
 
 ## AI tools disclosure
 
 | Tool | How it was used |
 |---|---|
-| **Anthropic Claude** | Project scaffolding, prompt-template design, README drafting, slide outline |
-| **Hugging Face** | Model hosting (MusicGen, AudioLDM2, CLAP) |
-| **Google Colab** | GPU runtime for generation and eval |
+| **Anthropic Claude** | Project scaffolding, prompt-template design, debugging the AudioLDM2/transformers patch, README drafting, slide outline |
+| **Hugging Face** | Hosts MusicGen, AudioLDM2, Stable Diffusion 1.5, and CLAP weights — used as-is |
+| **Google Colab** | GPU runtime for generation and evaluation passes |
+| **GitHub Copilot** | Inline autocomplete on Python boilerplate |
 
 ## Limitations
 
-- MusicGen-small tops out around 30 seconds of coherent music; longer outputs lose structure.
-- AudioLDM2 occasionally leaks humming/melodic content into SFX even with a negative prompt.
-- CLAP-based alignment is a proxy, not a human judgment — high CLAP similarity ≠ subjectively "better."
-- No on-the-fly looping: MusicGen doesn't natively produce seamless loops; post-processing (crossfade) would be needed for actual game use.
+- **Short horizons.** MusicGen-small loses coherence past ~30 seconds; no built-in seamless looping.
+- **SFX bleed.** AudioLDM2 occasionally leaks melodic content into sound effects even with a negative prompt.
+- **CLAP is a proxy.** Automatic alignment correlates with — but doesn't equal — human preference. A clip can score high on CLAP and still sound off.
+- **English-only.** Tested only on English prompts; multilingual behavior unverified.
+- **No tempo/key control.** Can't yet constrain musical attributes from user input — only via prompt hints.
+- **Image style is generic.** SD 1.5 produces decent concept art but lacks the consistency of dedicated game-art models. Swapping in SDXL or a fine-tuned checkpoint would help.
 
 ## License
 
